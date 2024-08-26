@@ -4,12 +4,13 @@ Retrieves elevation data for US geographies. Built on [tigris](https://github.co
 ## Installation
 ```
 install.packages("devtools")
-devltools::install_github("marsha5813/elevationus")
+devtools::install_github("marsha5813/elevationus")
 ```
 
 ## Examples
 ### Get elevation data for the state of Oregon
 ```
+library(elevationus)
 elev <- get_elevation_data(level = "state", geoid = "41")
 print(paste("Mean elevation:",elev$elevation_mean,"meters"))
 elev$map
