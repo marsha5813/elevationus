@@ -50,6 +50,11 @@ elev$map
 The 'z' argument ranges from 0 to 16 and is passed to [elevatr::get_elev_raster()](https://rdrr.io/cran/elevatr/man/get_elev_raster.html). See the [tilezen documentation](https://github.com/tilezen/joerd/blob/master/docs/data-sources.md) for data sources and resolutions returned at each level of z.
 
 ## Roadmap
-* Round mean elevation to reasonable precision
+### Future features
+* Bulk download option so that, if given a vector of geographies rather than a single geo, just downloads one set of tigris geometries and one elevation raster with a bounding box made by a union of the geos. Would greatly speed up bulk operations.
 * Option for population-weighted mean elevation
 * Option for whole nation
+
+### Future fixes
+* Round mean elevation to reasonable precision
+* Handle imports more carefully. See function conflicts. Import specific functions rather than whole namespaces.
