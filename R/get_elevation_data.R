@@ -31,6 +31,11 @@
 #' print(paste("Mean elevation:",elev$elevation_mean,"meters"))
 #' elev$map
 #' }
+#' @import dplyr
+#' @import tigris
+#' @import raster
+#' @import elevatr
+#' @import ggplot2
 #' @export
 get_elevation_data <- function(level, geoid, year = 2022, resolution = "500k", z = 8) {
 
