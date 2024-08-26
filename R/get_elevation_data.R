@@ -89,7 +89,7 @@ get_elevation_data <- function(level, geoid, year = 2022, resolution = "500k", z
   )
   zoom_level <- zoom_level.df |> dplyr::filter(z_level == z) |> dplyr::pull(nominal)
 
-  g <- ggplot() +
+  g <- ggplot2::ggplot() +
     geom_raster(data = elev.df, aes(x, y, fill = elevation)) +
     geom_sf(data = poly, fill = NA, color = "white") +
     labs(fill = "Elevation (m)",
