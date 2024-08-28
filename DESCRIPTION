@@ -11,8 +11,11 @@ LazyData: true
 Imports:
     sf,
     dplyr,
+    tidyr,
     tigris,
     raster,
     elevatr,
-    ggplot2
+    ggplot2,
+    terra,
+    data.table
 RoxygenNote: 7.3.2

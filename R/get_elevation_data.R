@@ -104,7 +104,7 @@ get_elevation_data <- function(level, geoid, year = 2022, resolution = "500k", z
 
   # Create output objects
   out <- list(elevation_data = elev.df,
-              elevation_mean = mean(elev.df$elevation),
+              elevation_mean = round(mean(elev.df$elevation)),
               raster = raster_cropped,
               map = g)
 
