@@ -113,8 +113,7 @@ get_elevation_data_batch <- function(level, state, county = NULL, year = 2022, r
   # Get elevation for centers of population
   message(paste("Getting elevation at each",level,"center of population"))
   elev_popcenters <- popcenters |> filter(STATEFP == state)
-  coordinates(elev_popcenters) <- ~LONGITUDE+LATITUDE
-  proj4string(elev_popcenters) <- CRS("+proj=longlat +datum=NAD83 +no_defs")
+  elev_popcenters <- st_as_sf(elev_popcenters, coords = c("LONGITUDE", "LATITUDE"), crs = 4269) # NAD83, standard for US federal agencies
   elev_popcenters$elevation_popcenter <- raster::extract(stateraster, elev_popcenters)
   elev_popcenters <- elev_popcenters |>
     as.data.frame() |>
