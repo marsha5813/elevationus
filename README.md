@@ -88,7 +88,7 @@ install.packages("purrr")
 library(purrr)
 
 # Get vector of state fips codes
-stfips <- read.csv("https://gist.githubusercontent.com/marsha5813/14036adfbb6094f7fa3b25ee48299786/raw/75c53d82fc8998dc3f8dbd98f31e29fcbe50f1a3/stfips", col.Classes = "character")
+stfips <- read.csv("https://gist.githubusercontent.com/marsha5813/14036adfbb6094f7fa3b25ee48299786/raw/75c53d82fc8998dc3f8dbd98f31e29fcbe50f1a3/stfips", colClasses = "character")
 
 # Pull data for each state and return as a single dataframe
 el <- map_dfr(stfips$fips, ~get_elevation_data_batch(level = "tract", state = .x))
