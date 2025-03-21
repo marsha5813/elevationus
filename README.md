@@ -8,7 +8,8 @@ get_elevation_data_batch() take a state FIPS code and returns elevation data for
 ## Installation
 ```
 install.packages("devtools")
-devtools::install_github("marsha5813/elevationus")
+library(devtools)
+install_github("marsha5813/elevationus")
 ```
 
 ## Examples
@@ -79,14 +80,26 @@ get_elevation_data_batch(level = "tract", state = "24")
 ```
 get_elevation_data_batch(level = "tract", state = "24", county = "001")
 ```
-(table not shown)
+
+### Get elevation for all tracts in the US (this downloads a lot of data)
+```
+# Will use purrr to iterate over states
+install.packages("purrr")
+library(purrr)
+
+# Get vector of state fips codes
+stfips <- read.csv("https://gist.githubusercontent.com/marsha5813/14036adfbb6094f7fa3b25ee48299786/raw/75c53d82fc8998dc3f8dbd98f31e29fcbe50f1a3/stfips", col.Classes = "character")
+
+# Pull data for each state and return as a single dataframe
+el <- map_dfr(stfips$fips, ~get_elevation_data_batch(level = "tract", state = .x))
+```
 
 ## Notes
 The 'z' argument ranges from 0 to 16 and is passed to [elevatr::get_elev_raster()](https://rdrr.io/cran/elevatr/man/get_elev_raster.html). See the [tilezen documentation](https://github.com/tilezen/joerd/blob/master/docs/data-sources.md) for data sources and resolutions returned at each level of z.
 
 ## Roadmap
 ### Future features
-* Option for whole nation
+* Option for whole nation or regions rather than iterating over states
 
 ### Future fixes
 * Handle imports more carefully. See function conflicts. Import specific functions rather than whole namespaces.
